@@ -17,4 +17,8 @@ with smaller int8 models:
 Each dir holds the same four files: `sherpa-onnx-wasm-main-asr.{js,wasm,data}`
 and `sherpa-onnx-asr.js`. The app loads them by `<base>/<dir>/<file>`.
 
-Bump the `v1` segment when a bundle changes incompatibly; clients cache by URL.
+Versions (clients cache by URL, so a changed bundle gets a new directory):
+
+- `v2/` — wasm memory limits patched to initial 128 MB / max 1 GB. The stock build
+  declares 512 MB up front, which a 2 GB TV cannot allocate (`WebAssembly.instantiate(): Out of memory`).
+- `v1/` — stock sherpa-onnx memory limits; kept for reference.
